@@ -1,0 +1,9 @@
+json
+pystray
+tkinter
+Pillow
+pyscreeze
+pynput
+pytesseract
+datetime
+pyperclip
