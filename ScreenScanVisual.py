@@ -1,5 +1,4 @@
 import json
-from pystray import MenuItem as item
 import tkinter as tk
 from tkinter import filedialog
 from PIL import ImageTk, Image
@@ -277,12 +276,17 @@ def on_activate():
                 text = "No text found"
 
             # Check if a text box already exists in the window
-            existing_text_box = cropped_window.children.get(tk.Text)
+            canvas_children = cropped_window.winfo_children()
+            print(canvas_children)
 
-            if existing_text_box > 0:
+            # if canvas_children has a text box, update the text in the text box
+            text_boxes = [child for child in canvas_children if isinstance(child, tk.Text)]
+            if text_boxes:
                 # Update the content of the existing text box
-                existing_text_box.delete("1.0", tk.END)
-                existing_text_box.insert(tk.END, text)
+                text_box = text_boxes[0]
+                text_box.delete("1.0", tk.END)
+                text_box.insert(tk.END, text)
+                print("Updating text box")
             else:
                 # Create a new text box in the existing Tkinter window to display the recognized text
                 text_box = tk.Text(cropped_window, height=10, width=cropped_window.winfo_width()//9, font=("Helvetica", 10))

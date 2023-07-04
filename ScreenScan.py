@@ -6,7 +6,6 @@ import pyscreeze
 from pynput import keyboard
 import pytesseract
 import os
-from datetime import datetime
 import pyperclip
 
 # check if locations.json exists
